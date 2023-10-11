@@ -274,6 +274,14 @@ impl pallet_template::Config for Runtime {
 	type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
 }
 
+
+/// Configure the pallet-ocw in pallets/template.
+impl pallet_ocw::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type WeightInfo = pallet_ocw::weights::SubstrateWeight<Runtime>;
+	// type AuthorityId = pallet_ocw::crypto::TestAuthId;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub struct Runtime {
@@ -286,6 +294,9 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		// Include the custom logic from the pallet-ocw in the runtime.
+		OcwModule: pallet_ocw,
+
 	}
 );
 
